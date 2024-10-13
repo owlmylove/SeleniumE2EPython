@@ -16,9 +16,6 @@ class OpenPositionsPage:
         self.open_positions_url = "https://useinsider.com/careers/open-positions/"
   #      self.open_positions_quality_assurance_url = "https://useinsider.com/careers/open-positions/?department=qualityassurance"
 
-    def open_page(self, url):
-        self.driver.get(url)
-
     def click_button_find_jobs(self):
         if self.driver.find_element(*self.find_jobs_button_Careers).is_displayed():
             self.driver.find_jobs_button_Careers.click()

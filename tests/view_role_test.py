@@ -3,9 +3,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
-
-from pages.home_page import HomePage
-from pages.navigation_menu import NavigationMenu
+from pages.view_role_page import ViewRolePage
 
 
 @pytest.fixture()
@@ -17,12 +15,13 @@ def driver():
     driver.quit()
 
 
-def test_navigation_menu(driver):
-    navigation_menu = NavigationMenu(driver)
-    navigation_menu.check_navbar()
-    time.sleep(2)
-    navigation_menu.select_company()
-    time.sleep(2)
-    navigation_menu.select_careers()
-    time.sleep(2)
+def test_view_role(driver):
+    view_page_page = ViewRolePage(driver)
+    view_page_page.click_button_view_role()
+    time.sleep(1)
+    view_page_page.open_page("https://jobs.lever.co/useinsider/")
+    time.sleep(1)
+    view_page_page.check_view_role_redirect()
+    time.sleep(1)
+    view_page_page.check_lever_logo()
 

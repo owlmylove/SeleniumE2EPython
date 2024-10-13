@@ -8,9 +8,6 @@ class CareersPage:
         self.element_Teams = (By.CSS_SELECTOR, "#career-find-our-calling")
         self.element_Lives = (By.XPATH, "//*[text()='Life at Insider']")
 
-    def open_page(self, url):
-        self.driver.get(url)
-
     def check_page_element_locations(self):
         self.driver.find_element(*self.element_Locations)
         assert self.element_Locations is not False

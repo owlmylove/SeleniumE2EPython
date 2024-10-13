@@ -7,6 +7,7 @@ class ViewRolePage:
         self.view_role_button = (By.XPATH, "//*[text()='View Role']")
         self.view_role_redirect_url = (By.CSS_SELECTOR, "[content^='https://jobs.lever.co/useinsider/']")
         self.lever_logo = (By.XPATH, "//*[text()='Lever logo'")
+        self.lever_url = "https://jobs.lever.co/useinsider/"
 
     # def hover_button_view_role(self):
     #     self.driver.find_element(*self.view_role_button).hover()
