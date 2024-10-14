@@ -1,13 +1,14 @@
 from selenium.webdriver.common.by import By
+from pages.base_page import BasePage
 
 
-class HomePage:
+class HomePage(BasePage):
     def __init__(self, driver):
         self.driver = driver
         self.check_page_logo = (By.CSS_SELECTOR, "#navigation [src*='logo-old.png']")
 
-    def open_page(self, url):
-        self.driver.get(url)
-
     def check_page_loaded(self):
-        return True if self.driver.find_element(*self.check_page_logo) else False
+        return True if self.find_element(*self.check_page_logo) else False
+    # self.assertTrue(check_page_loaded())
+
+    pass

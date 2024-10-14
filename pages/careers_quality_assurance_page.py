@@ -5,7 +5,7 @@ class QualityAssurancePage:
     def __init__(self, driver):
         self.driver = driver
         self.careers_quality_assurance_url = "https://useinsider.com/careers/quality-assurance/"
-        self.see_allQaJobs_button = (By.CLASS_NAME, ".btn-outline-secondary")  # See all QA jobs
+        self.see_allQaJobs_button = (By.XPATH, "//*[@id='page-head']/div/div/div[1]/div/div/a")  # See all QA jobs
         self.filter_location = (By.ID, "[id='select2-filter-by-location-container']")  # //*[@id="select2-filter-by-location-container"]
         self.filter_department = (By.ID, "[id='select2-filter-by-department-container']")  # //*[@id="select2-filter-by-department-container"]
         self.location_Turkey = (By.ID, "[id='select2-filter-by-location-result-y2n4-Istanbul, Turkey']")  # //*[@id="select2-filter-by-location-result-y2n4-Istanbul, Turkey"]

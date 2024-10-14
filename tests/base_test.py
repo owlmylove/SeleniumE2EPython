@@ -1,21 +1,22 @@
-import pytest
+import unittest
 from selenium import webdriver
+from pages.base_page import BasePage
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 
-from pages.base_page import BasePage
+
+class BaseTest(unittest.TestCase):
+
+    def setUp(self):
+        self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+        self.driver.implicitly_wait(10)
+#        self.driver = webdriver.Firefox
+        self.driver.get("https://useinsider.com/")
+
+    def tearDown(self):
+        self.driver.close()
 
 
-class BaseTest(BasePage):
-
-    @pytest.fixture()
-    def driver(self):
-        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-        driver.implicitly_wait(10)
-        yield driver
-        driver.close()
-        driver.quit()
-
-    def base_test(self):
-        pass
-
+if __name__ == "__main__":
+    suite = unittest.TestLoader().loadTestsFromTestCase(BasePage)
+    unittest.TextTestRunner(verbosity=1).run(suite)

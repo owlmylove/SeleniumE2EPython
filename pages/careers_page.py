@@ -3,7 +3,8 @@ from selenium.webdriver.common.by import By
 
 class CareersPage:
     def __init__(self, driver):
-        self.driver = driver
+        super().__init__(driver)
+
         self.element_Locations = (By.CSS_SELECTOR, "#career-our-location")
         self.element_Teams = (By.CSS_SELECTOR, "#career-find-our-calling")
         self.element_Lives = (By.XPATH, "//*[text()='Life at Insider']")
@@ -22,6 +23,3 @@ class CareersPage:
         self.driver.find_element(*self.element_Lives)
         assert self.element_Locations is not False
         print("Element Lives is present on Careers page")
-
-
-
