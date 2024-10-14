@@ -17,14 +17,11 @@ class NavigationMenu:
 
     def select_company(self):
         self.driver.find_element(*self.element_Company).click()
-        assert self.dropdown_menu is not False, "Dropdown menu has not open"
-        print("Dropdown menu has shown")
+        assert self.dropdown_menu is not False
 
     def select_careers(self):
         self.driver.find_element(*self.element_Careers).click()
-        assert self.driver.current_url.find(self.careers_url) is not False, "Careers page has not open"
-        print("Careers page is open")
-
+        assert self.driver.current_url.find(self.careers_url) is not False
 
 
 

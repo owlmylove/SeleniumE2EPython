@@ -34,7 +34,6 @@ class QualityAssurancePage:
 
     def check_jobs_list(self):
         assert self.driver.find_element(*self.positions_list).is_displayed() is not False
-        print("Jobs list is on the page")
 
     def check_position_title(self):
         assert (self.driver.find_element(*self.position_title)

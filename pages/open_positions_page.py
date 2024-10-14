@@ -19,8 +19,8 @@ class OpenPositionsPage:
     def click_button_find_jobs(self):
         if self.driver.find_element(*self.find_jobs_button_Careers).is_displayed():
             self.driver.find_jobs_button_Careers.click()
-        assert self.driver.current_url.find(self.open_positions_url) is not False, "Positions page has not open"
-        print("Positions page is open")
+        assert self.driver.current_url.find(self.open_positions_url) is not False
+
 
     def open_location_dropdown(self):
         self.driver.find_element(*self.filter_location).click()
@@ -36,7 +36,6 @@ class OpenPositionsPage:
 
     def check_jobs_list(self):
         assert self.driver.find_element(*self.positions_list).is_displayed() is not False
-        print("Jobs list is on the page")
 
     def check_position_title(self):
         assert (self.driver.find_element(*self.position_title)

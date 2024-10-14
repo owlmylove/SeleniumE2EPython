@@ -1,2 +1,6 @@
 .idea/*
 *__pycache__*
+suite.py
+main_test_suite.py
+main_page.py
+config.py

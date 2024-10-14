@@ -1,10 +1,10 @@
 from selenium.webdriver.common.by import By
+from pages.base_page import BasePage
 
 
-class CareersPage:
+class CareersPage(BasePage):
     def __init__(self, driver):
-        super().__init__(driver)
-
+        self.driver = driver
         self.element_Locations = (By.CSS_SELECTOR, "#career-our-location")
         self.element_Teams = (By.CSS_SELECTOR, "#career-find-our-calling")
         self.element_Lives = (By.XPATH, "//*[text()='Life at Insider']")
@@ -12,14 +12,11 @@ class CareersPage:
     def check_page_element_locations(self):
         self.driver.find_element(*self.element_Locations)
         assert self.element_Locations is not False
-        print("Element Locations is present on Careers page")
 
     def check_page_elements_teams(self):
         self.driver.find_element(*self.element_Teams)
         assert self.element_Locations is not False
-        print("Element Teams is present on Careers page")
 
     def check_page_elements_lives(self):
         self.driver.find_element(*self.element_Lives)
         assert self.element_Locations is not False
-        print("Element Lives is present on Careers page")

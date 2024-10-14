@@ -9,7 +9,9 @@ class BasePage(object):
     def __int__(self, driver, base_url='https://useinsider.com/'):
         self.base_url = base_url
         self.driver = driver
-        self.timeout = 30
+        self.wait_element = WebDriverWait(self.driver, 10)
+        self.action = ActionChains(self.driver)
+#        self.timeout = 30
 
     def find_element(self, *locator):
         return self.driver.find_element(*locator)

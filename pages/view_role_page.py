@@ -9,8 +9,7 @@ class ViewRolePage:
         self.lever_logo = (By.XPATH, "//*[text()='Lever logo'")
         self.lever_url = "https://jobs.lever.co/useinsider/"
 
-    # def hover_button_view_role(self):
-    #     self.driver.find_element(*self.view_role_button).hover()
+# hover
 
     def click_button_view_role(self):
         print(self.driver.find_element(*self.view_role_button).__getattribute__('href').click())
@@ -20,8 +19,7 @@ class ViewRolePage:
 
     def check_view_role_redirect(self):
         self.driver.find_element(*self.view_role_redirect_url)
-        assert self.driver.current_url.find(self.view_role_redirect_url) is not False, "Lever page has not open"
-        print("Lever page has been open")
+        assert self.driver.current_url.find(self.view_role_redirect_url) is not False
 
     def check_lever_logo(self):
         self.driver.find_element(*self.lever_logo)
