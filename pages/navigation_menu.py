@@ -12,8 +12,7 @@ class NavigationMenu:
 
     def check_navbar(self):
         self.driver.find_element(*self.navigation_bar)
-        assert self.navigation_bar is not False, "Navigation Bar is not on a screen"
-        print("Navigation Bar is present on a screen")
+        assert self.navigation_bar is not False
 
     def select_company(self):
         self.driver.find_element(*self.element_Company).click()

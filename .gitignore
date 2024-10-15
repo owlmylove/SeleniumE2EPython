@@ -4,3 +4,6 @@ suite.py
 main_test_suite.py
 main_page.py
 config.py
+geckodriver.log
+.pytest_cache
+tests/.pytest_cache

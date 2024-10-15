@@ -11,4 +11,3 @@ class HomePage(BasePage):
         return True if self.find_element(*self.check_page_logo) else False
     # self.assertTrue(check_page_loaded())
 
-    pass

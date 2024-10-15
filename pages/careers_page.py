@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 
 
-class CareersPage(BasePage):
+class CareersPage:
     def __init__(self, driver):
         self.driver = driver
         self.element_Locations = (By.CSS_SELECTOR, "#career-our-location")
