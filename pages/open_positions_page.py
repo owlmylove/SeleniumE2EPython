@@ -1,62 +1,72 @@
 import time
-
+import logging
 from selenium.webdriver.common.by import By
+from pages.base_page import BasePage
 
 
-class OpenPositionsPage:
+class OpenPositionsPage(BasePage):
     def __init__(self, driver):
         self.driver = driver
-        self.find_jobs_button_Careers = (By.XPATH, "//*[@id='page-head']/div/div/div[1]/div/div/a")
         self.filter_location = (By.XPATH, "//*[@id='select2-filter-by-location-container']")
         self.filter_department = (By.XPATH, "//*[@id='select2-filter-by-department-container']")
-        self.location_Turkey = (By.XPATH, "//*[@id='select2-filter-by-location-result-y2n4-Istanbul, Turkey']")
-        self.department_qualityAssurance = (
-            By.XPATH, "//*[@id='select2-filter-by-department-result-2cey-Quality Assurance']")
+        self.location_Turkey = (By.XPATH, "//*[text()='Istanbul, Turkey']")
+        self.department_qualityAssurance = (By.XPATH, "//*[text()='Quality Assurance']")  # "//*[contains(@id, 'Quality Assurance')]"
         self.positions_list = (By.XPATH, "//*[@id='jobs-list']")
-        self.position_title = (By.CLASS_NAME, ".position-title")  # Quality Assurance
-        self.position_department = (By.CLASS_NAME, ".position-department")  # Quality Assurance
-        self.position_location = (By.CLASS_NAME, ".position-location")  # Istanbul, Turkey
+        self.position_title = (By.CLASS_NAME, "position-title")  # Quality Assurance
+        self.position_department = (By.CLASS_NAME, "position-department")  # Quality Assurance
+        self.position_location = (By.CLASS_NAME, "position-location")  # Istanbul, Turkey
         self.open_positions_url = "https://useinsider.com/careers/open-positions/"
 
-    #      self.open_positions_quality_assurance_url = "https://useinsider.com/careers/open-positions/?department=qualityassurance"
-
-    def click_button_find_jobs(self):
-        if self.driver.find_element(*self.find_jobs_button_Careers).click():
-            assert self.driver.current_url.find(self.open_positions_url) is not False
-
     def open_location_dropdown(self):
-        location = self.driver.find_element(*self.filter_location)
-        time.sleep(5)
+        time.sleep(1)
+        self.log('open_location_dropdown')
+        location = self.wait_for_element_to_be_visible(self.filter_location)
         if location.is_displayed():
             location.click()
+            self.log('clicked on dropdown')
 
     def select_location_turkey(self):
-        turkey = (self.driver.find_element(*self.location_Turkey)).wait_for_element_to_be_visible
+        self.log('select_location_turkey')
+        turkey = self.wait_for_element_to_be_visible(*self.location_Turkey)
         if turkey.is_displayed():
             turkey.click()
+            self.log('clicked on turkey')
 
     def open_department_dropdown(self):
-        department = self.driver.find_element(*self.filter_department)
-        time.sleep(5)
+        self.log('open_department_dropdown')
+        department = self.wait_for_element_to_be_visible(*self.filter_department)
         if department.is_displayed():
             department.click()
+            self.log('clicked on department')
 
     def select_department_quality_assurance(self):
-        qa = (self.driver.find_element(*self.department_qualityAssurance)).wait_for_element_to_be_visible
+        self.log('select_department_quality_assurance')
+        qa = self.wait_for_element_to_be_visible(*self.department_qualityAssurance)
         if qa.is_displayed():
             qa.click()
 
     def check_jobs_list(self):
-        assert self.driver.find_element(*self.positions_list).is_displayed() is not False
+        self.log('check_jobs_list')
+        jobs_list = self.wait_for_element_to_be_visible(*self.positions_list)
+        assert jobs_list.is_displayed() is not False
 
     def check_position_title(self):
-        assert (self.driver.find_element(*self.position_title)
-                in self.driver.position_title("Quality Assurance").text)
+        self.log('check_position_title')
+        title_p = self.get_text(*self.position_title)
+        logging.info(title_p)
+        assert ("Quality Assurance" in title_p)
+        self.log(f'position_title is: {title_p}')
 
     def check_position_department(self):
-        assert (self.driver.find_element(*self.position_department)
-                in self.driver.position_department("Quality Assurance").text)
+        self.log('check_position_department')
+        title_d = self.get_text(*self.position_department)
+        logging.info(title_d)
+        assert ("Quality Assurance" in title_d)
+        self.log(f'position_department is: {title_d}')
 
     def check_position_location(self):
-        assert (self.driver.find_element(*self.position_location)
-                in self.driver.position_location("Istanbul, Turkey").text)
+        self.log('check_position_location')
+        title_l = self.get_text(*self.position_location)
+        logging.info(title_l)
+        assert ("Istanbul, Turkey" in title_l)
+        self.log(f'position_location is: {title_l}')

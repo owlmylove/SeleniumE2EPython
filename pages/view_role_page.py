@@ -1,7 +1,8 @@
 from selenium.webdriver.common.by import By
+from pages.base_page import BasePage
 
 
-class ViewRole:
+class ViewRole(BasePage):
     def __init__(self, driver):
         self.driver = driver
         self.view_role_button = (By.XPATH, "//*[text()='View Role']")
@@ -12,10 +13,11 @@ class ViewRole:
 # hover
 
     def click_button_view_role(self):
-        print(self.driver.find_element(*self.view_role_button).__getattribute__('href').click())
-
-    def open_page(self, url):
-        self.driver.get(url)
+        self.log('click_button_view_role')
+        view_button = self.wait_for_element_to_be_visible(*self.view_role_button)
+        view_button.click()
+        self.log('button view role is clicked')
+ #       print(self.driver.find_element(*self.view_role_button).__getattribute__('href').click())
 
     def check_view_role_redirect(self):
         self.driver.find_element(*self.view_role_redirect_url)
