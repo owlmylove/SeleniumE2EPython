@@ -44,7 +44,7 @@ class TestSuite(BaseTest):
         view_role = ViewRole(self.driver)
 #        view_role.check_redirect_url()
         view_role.click_button_view_role()  # scroll down to the QA job item and hover to make button "View Role" visible
-        time.sleep(5)
+        time.sleep(10)
         # view_role.check_view_role_redirect_button_href()
         # view_role.check_redirect_url()
         # view_role.check_lever_logo()

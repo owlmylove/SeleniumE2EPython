@@ -16,10 +16,7 @@ Application form page
 
 All files in /tests folder have their own methods according to page objects and cant be run as independent isolated tests, as they're part of one E2E test.
 
-
-To run the E2E Test, please run suite_test.py from /tests folder
-
-To save the report after test run and view it in browser - please use parameter --html=report1.html in command
+To save the report after test run and view it in browser - please use command - pytest ./tests/suite_test.py --html=report/report1.html pytest
 
 Report will be saved in projects /reports folder (after each run report will be overwritten)
 
@@ -33,3 +30,7 @@ There is another way to get careers page, it leads to open positions path instea
 Also, /utils folder contains locators file, as for feature changes we could keep all pages locators separately from page methods
 
 requirements.txt file contains all python interpreter settings
+
+*To run the E2E Test, please run suite_test.py from /tests folder*
+
+
