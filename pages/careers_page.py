@@ -11,18 +11,19 @@ class CareersPage(BasePage):
         self.find_jobs_button_Careers = (By.XPATH, "//*[@id='page-head']//a[text()='Find your dream job']")
 
     def check_page_element_locations(self):
-        self.wait_for_element_to_be_visible(*self.element_Locations)
+        self.wait_for_element_to_be_visible(self.element_Locations)
         self.log('check_page_element_locations')
 
     def check_page_elements_teams(self):
-        self.wait_for_element_to_be_visible(*self.element_Teams)
+        self.wait_for_element_to_be_visible(self.element_Teams)
         self.log('check_page_elements_teams')
 
     def check_page_elements_lives(self):
-        self.driver.wait_for_element_to_be_visible(*self.element_Lives)
+        self.wait_for_element_to_be_visible(self.element_Lives)
         self.log('check_page_elements_lives')
 
     def click_button_find_jobs(self):
-        self.driver.wait_for_element_to_be_visible(*self.find_jobs_button_Careers).click()
+        jobs_button = self.wait_for_element_to_be_visible(self.find_jobs_button_Careers)
+        jobs_button.click()
         self.log('click_button_find_jobs')
 

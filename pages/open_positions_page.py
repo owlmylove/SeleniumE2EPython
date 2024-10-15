@@ -27,46 +27,46 @@ class OpenPositionsPage(BasePage):
 
     def select_location_turkey(self):
         self.log('select_location_turkey')
-        turkey = self.wait_for_element_to_be_visible(*self.location_Turkey)
+        turkey = self.wait_for_element_to_be_visible(self.location_Turkey)
         if turkey.is_displayed():
             turkey.click()
             self.log('clicked on turkey')
 
     def open_department_dropdown(self):
         self.log('open_department_dropdown')
-        department = self.wait_for_element_to_be_visible(*self.filter_department)
+        department = self.wait_for_element_to_be_visible(self.filter_department)
         if department.is_displayed():
             department.click()
             self.log('clicked on department')
 
     def select_department_quality_assurance(self):
         self.log('select_department_quality_assurance')
-        qa = self.wait_for_element_to_be_visible(*self.department_qualityAssurance)
+        qa = self.wait_for_element_to_be_visible(self.department_qualityAssurance)
         if qa.is_displayed():
             qa.click()
 
     def check_jobs_list(self):
         self.log('check_jobs_list')
-        jobs_list = self.wait_for_element_to_be_visible(*self.positions_list)
+        jobs_list = self.wait_for_element_to_be_visible(self.positions_list)
         assert jobs_list.is_displayed() is not False
 
     def check_position_title(self):
         self.log('check_position_title')
-        title_p = self.get_text(*self.position_title)
+        title_p = self.get_text(self.position_title)
         logging.info(title_p)
         assert ("Quality Assurance" in title_p)
         self.log(f'position_title is: {title_p}')
 
     def check_position_department(self):
         self.log('check_position_department')
-        title_d = self.get_text(*self.position_department)
+        title_d = self.get_text(self.position_department)
         logging.info(title_d)
         assert ("Quality Assurance" in title_d)
         self.log(f'position_department is: {title_d}')
 
     def check_position_location(self):
         self.log('check_position_location')
-        title_l = self.get_text(*self.position_location)
+        title_l = self.get_text(self.position_location)
         logging.info(title_l)
         assert ("Istanbul, Turkey" in title_l)
         self.log(f'position_location is: {title_l}')

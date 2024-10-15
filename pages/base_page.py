@@ -1,8 +1,7 @@
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import ActionChains
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.common.exceptions import TimeoutException
 import logging
 from datetime import datetime
 
@@ -25,8 +24,18 @@ class BasePage(object):
 
     def wait_for_element_to_be_visible(self, locator):
         wait = WebDriverWait(self.driver, 30)
-        self.log(f'wait_for_element_to_be_visible{locator}')
+        self.log(f'wait_for_element_to_be_visible {locator}')
         return wait.until(EC.visibility_of_element_located(locator))
+
+    def scroll_to_element(self, locator):
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView()", self.driver.find_element(By.XPATH, locator))
+        logging.info(locator)
+
+    def hover(self, locator):
+        element = self.find_element(locator)
+        hover = ActionChains(self.driver).move_to_element(element)
+        hover.perform()
 
     def get_text(self, element):
         self.log(f'get_text: {element}')
@@ -34,3 +43,4 @@ class BasePage(object):
 
     def log(self, text):
         self.driver.save_screenshot(f'../screenshots/step_{datetime.now()}.png')
+        logging.info(text)
