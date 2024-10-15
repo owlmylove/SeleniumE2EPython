@@ -24,5 +24,5 @@ class CareersPage(BasePage):
 
     def click_button_find_jobs(self):
         self.driver.wait_for_element_to_be_visible(*self.find_jobs_button_Careers).click()
-        self.log('lick_button_find_jobs')
+        self.log('click_button_find_jobs')
 

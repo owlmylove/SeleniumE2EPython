@@ -1,3 +1,5 @@
+import logging
+
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 
@@ -10,20 +12,29 @@ class ViewRole(BasePage):
         self.lever_logo = (By.XPATH, "//*[text()='Lever logo'")
         self.lever_url = "https://jobs.lever.co/useinsider/"
 
-# hover
+    def check_view_role_redirect_button_href(self):
+        self.log('check_view_role_redirect')
+        view_button_href = self.wait_for_element_to_be_visible(*self.view_role_button).get_text
+        logging.info(view_button_href)
+        assert (self.view_role_redirect_url in view_button_href)
+        self.log(f'Redirect url is: {view_button_href}')
 
     def click_button_view_role(self):
         self.log('click_button_view_role')
-        view_button = self.wait_for_element_to_be_visible(*self.view_role_button)
-        view_button.click()
-        self.log('button view role is clicked')
- #       print(self.driver.find_element(*self.view_role_button).__getattribute__('href').click())
+        view_button = self.wait_for_element_to_be_visible(*self.view_role_button).click()
+        self.log('view role button is clicked')
 
-    def check_view_role_redirect(self):
-        self.driver.find_element(*self.view_role_redirect_url)
-        assert self.driver.current_url.find(self.view_role_redirect_url) is not False
+    def check_redirect_url(self):
+        lever_logo_check = self.open_page(self.lever_url)
+        url = lever_logo_check.get_url
+        logging.info(url)
+        assert (self.lever_url in url)
+        self.log('url is correct')
 
     def check_lever_logo(self):
-        self.driver.find_element(*self.lever_logo)
-        return True if self.driver.find_element(*self.lever_logo) else False
+        self.open_page(self.lever_url)
+        logo = self.driver.find_element(*self.lever_logo)
+        assert logo.is_displayed
+        self.log('logo is present on page')
+
 
