@@ -46,9 +46,10 @@ class OpenPositionsPage(BasePage):
             qa.click()
 
     def check_jobs_list(self):
+        time.sleep(3)
         self.log('check_jobs_list')
-        jobs_list = self.wait_for_element_to_be_visible(self.positions_list)
-        assert jobs_list.is_displayed() is not False
+        assert self.wait_for_element_to_be_visible(self.positions_list).is_displayed is not False
+        self.scroll_to_element(self.positions_list)
 
     def check_position_title(self):
         self.log('check_position_title')

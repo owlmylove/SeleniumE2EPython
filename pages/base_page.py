@@ -29,11 +29,10 @@ class BasePage(object):
 
     def scroll_to_element(self, locator):
         self.driver.execute_script(
-            "arguments[0].scrollIntoView()", self.driver.find_element(By.XPATH, locator))
-        logging.info(locator)
+            "arguments[0].scrollIntoView()", self.driver.find_element(*locator))
 
-    def hover(self, locator):
-        element = self.find_element(locator)
+    def hover(self, *locator):
+        element = self.find_element(*locator)
         hover = ActionChains(self.driver).move_to_element(element)
         hover.perform()
 
@@ -44,3 +43,11 @@ class BasePage(object):
     def log(self, text):
         self.driver.save_screenshot(f'../screenshots/step_{datetime.now()}.png')
         logging.info(text)
+
+    def accept_cookies(self, element):
+        try:
+            self.log('Accept cookies')
+            self.wait_for_element_to_be_visible(element).click()
+            self.log('Cookies accepted')
+        except Exception as e:
+            self.log(f'An error occured: {e}')

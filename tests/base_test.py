@@ -6,7 +6,6 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.firefox import GeckoDriverManager
 import logging
 
-
 class BaseTest(unittest.TestCase):
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     # driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
@@ -24,3 +23,5 @@ class BaseTest(unittest.TestCase):
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(BaseTest)
     unittest.TextTestRunner(verbosity=1).run(suite)
+
+

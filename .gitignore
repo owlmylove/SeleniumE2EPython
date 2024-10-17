@@ -7,3 +7,10 @@ config.py
 geckodriver.log
 .pytest_cache
 tests/.pytest_cache
+tests/careers_test.py
+tests/home_page_test.py
+tests/ignore_careers_quality_assurance_test.py
+tests/navigation_test.py
+tests/open_positions_test.py
+tests/view_role_test.py
+pages/ignore_careers_quality_assurance_page.py
